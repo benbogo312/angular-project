@@ -1,0 +1,14 @@
+nav a{
+  color:white;
+  text-decoration: none;
+  padding:0 12px;
+}
+
+nav a:hover{
+  color:yellow;
+}
+
+nav a.active{
+  color:orange;
+  font-weight: bold;
+}

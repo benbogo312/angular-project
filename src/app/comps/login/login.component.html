@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <div class="container text-center p-5">
+    <h1 class="display-4">COMPANY 
+      <i class="fa fa-angle-double-up text-success" aria-hidden="true"></i>
+      CRM</h1>
+    <form #f="ngForm" (ngSubmit)="onSub()" class="col-lg-6 mx-auto">
+      <h5>Login with your account</h5>
+      <div>
+        <input name="email" #inputEmail="ngModel" ngModel type="email" class="form-control" placeholder="Enter Your email" required email>
+        <div *ngIf="inputEmail.touched && inputEmail.invalid" class="text-danger text-start">Enter valid mail</div>
+      </div>
+      <div>
+        <input name="password" #inputPass="ngModel" ngModel type="text" class="form-control mt-3" placeholder="Enter Your password" required minlength="3">
+        <div *ngIf="inputPass.touched && inputPass.invalid" class="text-danger text-start">Enter valid password</div>
+      </div>
+      <div>
+        <button class="btn btn-success w-100 mt-3">Sign in</button>
+      </div>
+      <div class="mt-5">
+        CRM SYSTEM 2021-2031
+      </div>
+    </form>
+  </div>
+</div>
