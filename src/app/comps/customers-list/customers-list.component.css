@@ -1,0 +1,17 @@
+table i{
+  padding:0 8px;
+}
+
+table tbody tr i{
+  display: none;
+}
+
+table tbody tr:hover i{
+  cursor: pointer;
+  display: inline;
+}
+
+table a{
+  color:black;
+  text-decoration: none;
+}

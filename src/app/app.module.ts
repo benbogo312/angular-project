@@ -18,6 +18,10 @@ import { ProdsComponent } from './firecomps/prods/prods.component';
 import { AppAdminComponent } from './comps/app-admin/app-admin.component';
 import { HeaderAdminComponent } from './comps/header-admin/header-admin.component';
 import { SideNavAdminComponent } from './comps/side-nav-admin/side-nav-admin.component';
+import { CustomersListComponent } from './comps/customers-list/customers-list.component';
+import { AddCustomersComponent } from './comps/add-customers/add-customers.component';
+import { CustomerInfoComponent } from './comps/customer-info/customer-info.component';
+import { CustomerEditComponent } from './comps/customer-edit/customer-edit.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,11 @@ import { SideNavAdminComponent } from './comps/side-nav-admin/side-nav-admin.com
     ProdsComponent,
     AppAdminComponent,
     HeaderAdminComponent,
-    SideNavAdminComponent
+    SideNavAdminComponent,
+    CustomersListComponent,
+    AddCustomersComponent,
+    CustomerInfoComponent,
+    CustomerEditComponent
   ],
   imports: [
     BrowserModule,

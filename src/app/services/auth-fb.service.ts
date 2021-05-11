@@ -19,8 +19,8 @@ export class AuthFbService {
   // לוג אאוט
   async logOut(){
     await this.afAuth.signOut();
-    // back to login
     this.router.navigate(["/"]);
+    // back to login
   }
 
   getUserData():any {
