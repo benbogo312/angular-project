@@ -16,10 +16,27 @@ export class AuthFbService {
     return user;
   }
 
+  async singUpNewUser(_user:any) {
+    try{
+      let result = await this.afAuth.createUserWithEmailAndPassword(_user.email,_user.password)
+      return result;
+    }
+    catch(err){
+      console.log(err);
+      return err;
+    }
+  }
+
   // לוג אאוט
   async logOut(){
     await this.afAuth.signOut();
+    localStorage.removeItem("fb_user")
     this.router.navigate(["/"]);
+    setTimeout(() => {
+      // to subscribe again to customers of new users
+      window.location.reload();
+    },400)
+
     // back to login
   }
 

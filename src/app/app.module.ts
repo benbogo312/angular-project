@@ -22,6 +22,8 @@ import { CustomersListComponent } from './comps/customers-list/customers-list.co
 import { AddCustomersComponent } from './comps/add-customers/add-customers.component';
 import { CustomerInfoComponent } from './comps/customer-info/customer-info.component';
 import { CustomerEditComponent } from './comps/customer-edit/customer-edit.component';
+import { SignupComponent } from './comps/signup/signup.component';
+import { ContactListComponent } from './comps/contact-list/contact-list.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { CustomerEditComponent } from './comps/customer-edit/customer-edit.compo
     CustomersListComponent,
     AddCustomersComponent,
     CustomerInfoComponent,
-    CustomerEditComponent
+    CustomerEditComponent,
+    SignupComponent,
+    ContactListComponent
   ],
   imports: [
     BrowserModule,

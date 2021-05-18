@@ -13,6 +13,7 @@ export class HeaderAdminComponent implements OnInit {
 
   logOut(){
     this.authSer.logOut();
+  
   }
 
   ngOnInit(): void {

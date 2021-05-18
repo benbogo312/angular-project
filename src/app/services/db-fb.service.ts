@@ -6,7 +6,9 @@ import { AngularFireDatabase } from '@angular/fire/database';
 })
 export class DbFbService {
   customers_ar:any[] = [];
-
+  // copy of customers ar for search filter
+  realCustomers_ar:any[] = [];
+ 
 
   constructor(private afs:AngularFireDatabase) {
     // מפעילים בהתחלה ככה שהסרבס יודע להאזין 
@@ -17,6 +19,12 @@ export class DbFbService {
 
   getCustomersArrayData():any{
     return this.customers_ar;
+  }
+
+  addUser(_body:any):void {
+    // save the password sercret in db
+    _body.password = "*****"
+    this.afs.list("users").push(_body);
   }
 
   addCustomer(_body:any):void {
@@ -35,7 +43,10 @@ export class DbFbService {
 
   getObserCustomers():any {
     // return observable we can listen with subscribe
-    return this.afs.list("customers").snapshotChanges();
+    // return this.afs.list("customers").snapshotChanges();
+    // return customers of the user
+    let userId = localStorage["fb_user"] || "";
+    return this.afs.list("customers", ref => ref.orderByChild("user_id").equalTo(userId)).snapshotChanges();
   }
 
   getCustomers():void {
@@ -46,7 +57,17 @@ export class DbFbService {
         newItem.id = item.payload.key;
         this.customers_ar.push(newItem)
       })
+      // כל פעם שיש איסוף מידע מהמסד נתונים המערך ריל קאסטומירס
+      // מעתיק את עצמו מקסטומירס ללא רפרפנס בשביל החיפוש
+      this.realCustomers_ar = [...this.customers_ar]; 
       console.log(this.customers_ar);
     })
+  }
+
+  filterArrayBy(_filterSearch:any,_key:any):void {
+    let temp_ar = this.realCustomers_ar.filter((item) => {
+      return item[_key].includes(_filterSearch);
+    })
+    this.customers_ar.splice(0,this.customers_ar.length, ...temp_ar);
   }
 }

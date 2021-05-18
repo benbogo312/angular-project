@@ -23,7 +23,8 @@ export class LoginComponent implements OnInit {
         // success log in
         if(data.user){
           // TODO : redirect to admin
-          this.router.navigate(["/admin"])
+          localStorage.setItem("fb_user",data.user.uid);
+          this.router.navigate(["/admin"]);
         }
         console.log(data);
       }
