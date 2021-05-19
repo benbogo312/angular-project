@@ -9,8 +9,8 @@ import { DbFbService } from 'src/app/services/db-fb.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  @ViewChild("f") myForm:any
-  constructor(private authFb:AuthFbService, private router:Router, private dbFire:DbFbService) { }
+  @ViewChild("f") myForm: any
+  constructor(private authFb: AuthFbService, private router: Router, private dbFire: DbFbService) { }
 
   ngOnInit(): void {
   }
@@ -20,19 +20,17 @@ export class SignupComponent implements OnInit {
     let user = this.myForm.form.value
     let result = await this.authFb.singUpNewUser(user);
     console.log(result);
-    if(result.user){
+    if (result.user) {
       alert("Sign up succeful! now login");
       this.dbFire.addUser(user);
       this.router.navigate(["/"]);
-      //TODO add new record
     }
-    if(result.code){
+    if (result.code) {
       alert(result.message);
     }
     // result.user -> success
     // result.code -> problem
     return result;
-    //TODO: also add new record in db of firebase
   }
 
 }

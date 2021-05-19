@@ -7,25 +7,32 @@ import { DbFbService } from '../../services/db-fb.service';
   styleUrls: ['./customers-list.component.css']
 })
 export class CustomersListComponent implements OnInit {
-  _ar:any[] = [];
-  constructor(private dbFb:DbFbService) { }
+  _ar: any[] = [];
+  constructor(private dbFb: DbFbService) { }
 
   ngOnInit(): void {
     this._ar = this.dbFb.getCustomersArrayData();
   }
 
-  delCustomer(_id:any):void{
-    if(confirm("Are you sure you want to delete?")){
+  delCustomer(_id: any): void {
+    if (confirm("Are you sure you want to delete?")) {
       this.dbFb.delCustomer(_id);
     }
   }
 
-  searchByFirstName(ev:any): void {
+  searchByFirstName(ev: any): void {
     console.log(ev.target.value);
-    this.dbFb.filterArrayBy(ev.target.value,"first")
+    this.dbFb.filterArrayBy(ev.target.value, "first")
   }
 
+  searchByLastName(ev: any): void {
+    console.log(ev.target.value);
+    this.dbFb.filterArrayBy(ev.target.value, "last")
+  }
 
-
+  searchByPhoneNum(ev: any): void {
+    console.log(ev.target.value);
+    this.dbFb.filterArrayBy(ev.target.value, "phone")
+  }
 
 }

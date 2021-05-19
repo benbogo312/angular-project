@@ -8,17 +8,17 @@ import { DbFbService } from '../../services/db-fb.service';
   styleUrls: ['./add-customers.component.css']
 })
 export class AddCustomersComponent implements OnInit {
-  @ViewChild("f") myForm:any;
-  constructor(private dbFb:DbFbService, private router:Router) { }
+  @ViewChild("f") myForm: any;
+  constructor(private dbFb: DbFbService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  onSub():any {
-    if(this.myForm.form.status == "VALID"){
-      let bodyForm = this.myForm.form.value 
+  onSub(): any {
+    if (this.myForm.form.status == "VALID") {
+      let bodyForm = this.myForm.form.value
       console.log(bodyForm)
-      // מוסיף מאפיין של האיי די של המשתמש
+      // Adds property to the users id
       bodyForm.user_id = localStorage["fb_user"];
       this.dbFb.addCustomer(bodyForm);
       alert("success")

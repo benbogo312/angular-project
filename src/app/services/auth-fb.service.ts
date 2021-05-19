@@ -1,59 +1,59 @@
 import { Injectable } from '@angular/core';
-import {AngularFireAuth} from "@angular/fire/auth";
+import { AngularFireAuth } from "@angular/fire/auth";
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthFbService {
-  user:any = {}
-  // afAtuh -> משתנה שיכול לעשות את כל הפעולות של אוטנטקציה
-  // כגון לוג אין , לוג אווט , הרשמה , ואוטנטקציה אם מחובר
-  constructor(private afAuth:AngularFireAuth, private router:Router) { }
+  user: any = {}
+  // afAuth -> A veriable that can make all the functions of authontication
+  // Such as = Login, Logout, Register and checking if the user is connected
+  constructor(private afAuth: AngularFireAuth, private router: Router) { }
 
-  async logInFb(_email:string,_pass:string){
-    let user = await this.afAuth.signInWithEmailAndPassword(_email,_pass); 
+  async logInFb(_email: string, _pass: string) {
+    let user = await this.afAuth.signInWithEmailAndPassword(_email, _pass);
     return user;
   }
 
-  async singUpNewUser(_user:any) {
-    try{
-      let result = await this.afAuth.createUserWithEmailAndPassword(_user.email,_user.password)
+  async singUpNewUser(_user: any) {
+    try {
+      let result = await this.afAuth.createUserWithEmailAndPassword(_user.email, _user.password)
       return result;
     }
-    catch(err){
+    catch (err) {
       console.log(err);
       return err;
     }
   }
 
-  // לוג אאוט
-  async logOut(){
+  // Logout
+  async logOut() {
     await this.afAuth.signOut();
     localStorage.removeItem("fb_user")
     this.router.navigate(["/"]);
     setTimeout(() => {
       // to subscribe again to customers of new users
       window.location.reload();
-    },400)
+    }, 400)
 
     // back to login
   }
 
-  getUserData():any {
+  getUserData(): any {
     return this.user
   }
 
-  // בודק אם המשתמש מחובר
-  checkUserAuth(){
-    this.afAuth.authState.subscribe((user:any) => {
-      if(!user){
-        // לא מזהה יוזר
+  // Checks if the user is connected
+  checkUserAuth() {
+    this.afAuth.authState.subscribe((user: any) => {
+      if (!user) {
+        // Doesn't recognize user
         alert("You must login first to see the admin panel");
         this.router.navigate(["/"]);
       }
-      else{
-        for(let key in user){
+      else {
+        for (let key in user) {
           this.user[key] = user[key];
         }
       }

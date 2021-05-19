@@ -11,7 +11,7 @@
           <i class="fa fa-search" aria-hidden="true"></i>
         </span>
       </div>
-      <input (input)="searchByFirstName($event)" type="text" class="form-control" placeholder="First name" >
+      <input (input)="searchByFirstName($event)" type="text" class="form-control" placeholder="First name">
     </div>
     <div class="col-lg-3 d-flex">
       <div class="input-group-prepend">
@@ -19,7 +19,7 @@
           <i class="fa fa-search" aria-hidden="true"></i>
         </span>
       </div>
-      <input type="text" class="form-control" placeholder="Last name" >
+      <input (input)="searchByLastName($event)" type="text" class="form-control" placeholder="Last name">
     </div>
     <div class="col-lg-3 d-flex">
       <div class="input-group-prepend">
@@ -27,7 +27,7 @@
           <i class="fa fa-search" aria-hidden="true"></i>
         </span>
       </div>
-      <input type="text" class="form-control" placeholder="Phone" >
+      <input (input)="searchByPhoneNum($event)" type="text" class="form-control" placeholder="Phone">
     </div>
     <div class="col-lg-3">
       <a routerLink="/admin/addCustomer" class="btn btn-info w-100">

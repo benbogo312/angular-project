@@ -19,15 +19,14 @@ export class ProdsComponent implements OnInit {
   addProd(): void {
     // console.log(this.myForm.form)
     if (this.myForm.form.status == "VALID") {
-      // אוסף כאובייקט את המוצר החדש לפי השמות של האינפוטים בטופס
-      // כמאפיינים
+      // Collects the object from the new product by the input names in the form as properties
       let newProd = this.myForm.form.value;
-      // מוסיף למסד נתונים את המידע החדש
+      // Adds the new information to the Database
       this.afs.list("test_db").push(newProd);
     }
   }
 
-  // מחיקת רשומה לפי האיי די
+  // Delete an entry using id
   delProd(_idDel: any): void {
     if (confirm("Are you sure?")) {
       this.afs.list("test_db/" + _idDel).remove();
@@ -35,22 +34,21 @@ export class ProdsComponent implements OnInit {
   }
 
   getObserProds(): any {
-    // מחזיר את כל המידע מהמסד נתונים מהקולקשיין טסט די בי באובסירבלב
-    // וגם מאזין ברגע שנניח מוסיפים ל מסד נתונים מידע חדש הוא גם מתעדכן אוטומטית
+    // Returns all the data from the database from the collection test.db as an observeble
+    // And listens to the db for new information and also updates it automaticly 
     return this.afs.list("test_db").snapshotChanges()
   }
 
-  // אוסף את המידע מהמסד נתונים של הפייר בייס ריל טיים
+  // Collects the information from the Firebase db in real time
   getRealFoods(): void {
     this.getObserProds().subscribe((res: any) => {
-      // הריס לא מגיע עם המאפיינים של כל רשומה
       // console.log(res);
       this.prods_ar.splice(0, this.prods_ar.length);
       res.map((item: any) => {
-        // שולף את המידע של אותו דוקמנט במערך במסד של הקולקשיין
+        // Pulles the info from the document in the array in the db collection
         let newItem = item.payload.val();
-        // חשוב לדעת מה האיי די בשביל מחיקה ועריכה בהמשך
-        // האיי די יתבסס על הקיי של הרשומה
+        // It's important to know the ID to be able to delete and alter the document in the future
+        // The ID will be based with the Key of the entry
         newItem.id = item.payload.key;
         this.prods_ar.push(newItem);
 
