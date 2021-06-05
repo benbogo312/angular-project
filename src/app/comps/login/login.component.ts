@@ -8,35 +8,39 @@ import { AuthFbService } from '../../services/auth-fb.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  @ViewChild("f") myForm:any;
-  constructor(private authSer:AuthFbService, private router:Router) { }
+  @ViewChild("f") myForm: any;
+  constructor(private authSer: AuthFbService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  async onSub(){
-    if(this.myForm.form.status == "VALID"){
+  async onSub() {
+    if (this.myForm.form.status == "VALID") {
       // success
       let formData = this.myForm.form.value;
-      try{
-        let data = await this.authSer.logInFb(formData.email,formData.password);
+      try {
+        let data = await this.authSer.logInFb(formData.email, formData.password);
         // success log in
-        if(data.user){
+        if (data.user) {
           // TODO : redirect to admin
-          localStorage.setItem("fb_user",data.user.uid);
+          localStorage.setItem("fb_user", data.user.uid);
           this.router.navigate(["/admin"]);
         }
         console.log(data);
       }
-      catch(err){
+      catch (err) {
         // if there error
-        if(err.code){
+        if (err.code) {
           alert("Try again user or password worng")
         }
         console.log(err);
       }
       console.log(this.myForm.form.value);
     }
+  }
+
+  hashPassword(password: string) {
+    return "*".repeat(password.length)
   }
 
 }

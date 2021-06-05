@@ -12,3 +12,7 @@ nav a.active{
   color:orange;
   font-weight: bold;
 }
+
+.headerName{
+color: green;
+}

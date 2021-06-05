@@ -1,5 +1,6 @@
 .side_nav{
   min-height: calc(100vh - 70px);
+  max-width: fit-content;
 }
 .side_nav a{
   padding:12px;
@@ -7,8 +8,12 @@
   text-decoration: none;
   display: block;
   border-bottom: 2px solid white;
+  
 }
 
 .side_nav a:hover{
-  background: rgb(90, 90, 90);
+  color:green;
+  background: white;
 }
+
+
